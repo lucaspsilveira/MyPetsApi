@@ -21,6 +21,7 @@
       <Compile Remove="Migrations\20220519220007_InitialCreate.cs" />
       <Compile Remove="Migrations\20220519220007_InitialCreate.Designer.cs" />
       <Compile Remove="Migrations\DabaseContextModelSnapshot.cs" />
+      <Compile Remove="Controllers\TestController.cs" />
     </ItemGroup>
 
     <ItemGroup>

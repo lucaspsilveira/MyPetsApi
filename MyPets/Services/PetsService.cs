@@ -1,18 +1,5 @@
 namespace MyPets.Services;
 
-public class PetsServiceSingleton
+public class PetsService
 {
-    public string GetText = Guid.NewGuid().ToString();
 }
-
-
-public class PetsServiceScoped
-{
-    public string GetText = Guid.NewGuid().ToString();
-}
-
-public class PetsServiceTransient
-{
-    public string GetText = Guid.NewGuid().ToString();
-}
-

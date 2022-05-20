@@ -12,10 +12,6 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<MyPetsDatabaseContext>();
 
-builder.Services.AddScoped<PetsServiceScoped>();
-builder.Services.AddSingleton<PetsServiceSingleton>();
-builder.Services.AddScoped<PetsServiceTransient>();
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
