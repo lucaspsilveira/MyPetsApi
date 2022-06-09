@@ -12,8 +12,7 @@ public class PetsController : ControllerBase
     private readonly ILogger<PetsController> _logger;
     private readonly IPetsService _petsService;
 
-    public PetsController(ILogger<PetsController> logger,
-        MyPetsDatabaseContext context, IPetsService petsService)
+    public PetsController(ILogger<PetsController> logger, IPetsService petsService)
     {
         _logger = logger;
         _petsService = petsService;
