@@ -1,6 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 using MyPets.Database;
+using MyPets.Services;
 
 namespace MyPets.Controllers;
 
@@ -8,32 +9,26 @@ namespace MyPets.Controllers;
 [Route("[controller]")]
 public class PetsController : ControllerBase
 {
-    private static readonly string[] Surnames = new[]
-    {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    };
-
     private readonly ILogger<PetsController> _logger;
-    private readonly MyPetsDatabaseContext _context;
+    private readonly IPetsService _petsService;
 
     public PetsController(ILogger<PetsController> logger,
-        MyPetsDatabaseContext context)
+        MyPetsDatabaseContext context, IPetsService petsService)
     {
         _logger = logger;
-        _context = context;
+        _petsService = petsService;
     }
 
     [HttpGet]
-    public IEnumerable<Pet> Get()
+    public async Task<IEnumerable<Pet>> Get()
     {
-        return _context.Pets.ToList();
+        return await _petsService.GetAll();
     }
 
     [HttpPost]
     public async Task<ObjectResult> Post(Pet pet)
     {
-        _context.Pets.Add(pet);
-        await _context.SaveChangesAsync();
-        return Ok("Succces.");
+        await _petsService.Insert(pet);
+        return Ok("Success.");
     }
 }
