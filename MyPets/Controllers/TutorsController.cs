@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using MyPets.Database;
+using MyPets.Services;
 
 namespace MyPets.Controllers;
 
@@ -8,20 +7,19 @@ namespace MyPets.Controllers;
 [Route("[controller]")]
 public class TutorsController : ControllerBase
 {
-    private readonly MyPetsDatabaseContext _context;
+    private readonly ITutorsService _tutorsService;
 
-    public TutorsController(MyPetsDatabaseContext context)
+    public TutorsController(ITutorsService tutorsService)
     {
-        _context = context;
+        _tutorsService = tutorsService;
     }
 
     [HttpGet]
-    public IEnumerable<Tutor> Get() => _context.Tutors.Include(x => x.Pets).ToList();
+    public async Task<IEnumerable<Tutor>> Get() => await _tutorsService.GetAll();
 
     [HttpPost]
     public void Post(Tutor tutor)
     {
-        _context.Tutors.Add(tutor);
-        _context.SaveChanges();
+        _tutorsService.Insert(tutor);
     }
 }

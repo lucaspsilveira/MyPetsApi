@@ -13,6 +13,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IPetsRepository, PetsRepository>();
 builder.Services.AddScoped<IPetsService, PetsService>();
+builder.Services.AddScoped<ITutorsRepository, TutorsRepository>();
+builder.Services.AddScoped<ITutorsService, TutorsService>();
 builder.Services.AddDbContext<MyPetsDatabaseContext>();
 
 var app = builder.Build();
